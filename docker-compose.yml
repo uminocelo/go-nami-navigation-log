@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   db:
@@ -7,10 +7,10 @@ services:
     env_file:
       - .env.local
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_DB: ${DB_NAME}
-      PGDATA: /data/postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+      - PGDATA=/data/postgres
     volumes:
       - postgres:/data/postgres
     ports:
@@ -18,7 +18,7 @@ services:
 
 networks:
   default:
-    name: name_navigation_log
+    name: nami_navigation_log
 
 volumes:
   postgres:
