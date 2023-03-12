@@ -5,7 +5,7 @@ services:
     image: postgres
     restart: always
     env_file:
-      - .env
+      - .env.local
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USER}
