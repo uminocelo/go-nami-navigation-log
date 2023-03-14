@@ -10,13 +10,13 @@ import (
 
 func AddEntry(cxt *gin.Context) {
 	var input models.Entry
-
 	if err := cxt.ShouldBindJSON(&input); err != nil {
 		cxt.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	user, err := helpers.CurrentUser(cxt)
+
 	if err != nil {
 		cxt.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
