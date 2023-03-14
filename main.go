@@ -5,6 +5,7 @@ import (
 	"log"
 	"nami_navigation_log/controllers"
 	"nami_navigation_log/database"
+	"nami_navigation_log/middleware"
 	"nami_navigation_log/models"
 
 	"github.com/gin-gonic/gin"
@@ -37,6 +38,10 @@ func serveApplication() {
 	publicRoutes.POST("/register", controllers.Register)
 	publicRoutes.POST("/login", controllers.Login)
 
+	protectedRoutes := router.Group("/api")
+	protectedRoutes.Use(middleware.JWTAuthMiddleware())
+	protectedRoutes.POST("/entry", controllers.AddEntry)
+	protectedRoutes.GET("/entry", controllers.GetAllEntries)
 	router.Run(":8000")
 	fmt.Println("Server running on port :8000 || Access: localhost:8000")
 }
