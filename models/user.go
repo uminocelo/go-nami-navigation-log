@@ -42,7 +42,7 @@ func (user *User) ValidatePassword(password string) error {
 
 func FindUserByUsername(username string) (User, error) {
 	var user User
-	err := database.Database.Where("username=?", username).Find(&user).Error
+	err := database.Database.Where("username = ?", username).Find(&user).Error
 	if err != nil {
 		return User{}, err
 	}
